@@ -1,0 +1,89 @@
+[
+  {
+    "ngo_name": "Green Earth Vadodara",
+    "mission": "Environmental conservation in Gujarat",
+    "required_skills": [
+      "Environmental",
+      "Construction",
+      "Logistics"
+    ],
+    "focus_area": "Environment",
+    "location": "Vadodara",
+    "open_slots": 8,
+    "schedule": "Weekends Morning",
+    "contact_email": "info@greenearthvadodara.org",
+    "password": ""
+  },
+  {
+    "ngo_name": "Elder Care Foundation",
+    "mission": "Healthcare & companionship for seniors",
+    "required_skills": [
+      "Medical",
+      "Counseling"
+    ],
+    "focus_area": "Elderly",
+    "location": "Vadodara",
+    "open_slots": 12,
+    "schedule": "Weekdays Evening",
+    "contact_email": "contact@eldercare.org",
+    "password": ""
+  },
+  {
+    "ngo_name": "Tech for Good India",
+    "mission": "Digital literacy for children",
+    "required_skills": [
+      "Tech",
+      "Teaching"
+    ],
+    "focus_area": "Children",
+    "location": "Vadodara",
+    "open_slots": 5,
+    "schedule": "Weekdays",
+    "contact_email": "hello@techforgood.in",
+    "password": ""
+  },
+  {
+    "ngo_name": "Animal Rescue Gujarat",
+    "mission": "Rescue & care for stray animals",
+    "required_skills": [
+      "Logistics",
+      "Medical"
+    ],
+    "focus_area": "Animals",
+    "location": "Vadodara",
+    "open_slots": 10,
+    "schedule": "Anytime",
+    "contact_email": "rescue@animalgujarat.org",
+    "password": ""
+  },
+  {
+    "ngo_name": "elegance ngo",
+    "mission": "To be there for everyone",
+    "required_skills": [
+      "Teaching",
+      "Tech"
+    ],
+    "focus_area": "teaching",
+    "location": "Bhavnagar",
+    "open_slots": 10,
+    "schedule": "Weekends",
+    "contact_email": "elegance@gmail.com",
+    "password": "scrypt:32768:8:1$Cw15mdaGIA7Fc4IB$7f57b7d253878c8029c82a46184a5c9716b3034988a676e897b01888dc85830feba2b7b9dceb41c9752f446da758962cefa19280052d020f715e267c4094c693"
+  },
+  {
+    "ngo_name": "khoya ngo",
+    "mission": "Moje moj",
+    "required_skills": [
+      "Teaching",
+      "Medical",
+      "Tech",
+      "Legal"
+    ],
+    "focus_area": "tech",
+    "location": "idar",
+    "open_slots": 10,
+    "schedule": "Weekends",
+    "contact_email": "khoya@gmail.com",
+    "password": "scrypt:32768:8:1$K4Un29hbNu05EF0v$c42b7539e9ac087fb5cf1303318bde824cf2aca53bb564dee54ed7fc1286cb89cb71f730b5e332d84220b8f75e34f0da9044a588db34e1297937c40504e26b72"
+  }
+]

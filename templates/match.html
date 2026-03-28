@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto px-6 py-12">
+    <div class="text-center mb-12">
+        <h1 class="text-5xl font-bold text-[#1B5E20] mb-3">Your AI-Powered Matches</h1>
+        <p class="text-2xl text-gray-600">Best opportunities for <span class="font-semibold text-[#FF6F00]">{{ volunteer_name }}</span></p>
+        <p class="text-gray-500 mt-2"><i class="fas fa-robot mr-1"></i> Powered by Gemini AI</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+        {% for match in matches %}
+        <div class="bg-white rounded-3xl shadow-xl overflow-hidden card-hover border border-gray-100 transition-all duration-300">
+            <div class="h-2 bg-[#FF6F00]"></div>
+            <div class="p-8">
+                <div class="flex justify-center -mt-4 mb-6">
+                    <div class="match-circle" style="--score: {{ match.match_score }}%;">
+                        <div class="match-score-text">{{ match.match_score }}%</div>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-bold text-center text-[#1B5E20] mb-4">
+                    {{ match.ngo_name }}
+                    <i class="fas fa-magic text-[#FF6F00] text-sm ml-1" title="AI-matched"></i>
+                </h3>
+                
+                <div class="mb-6">
+                    <p class="text-gray-700 text-center leading-relaxed italic">
+                        "{{ match.reason }}"
+                    </p>
+                </div>
+
+                {% if match.insights %}
+                <div class="bg-gray-50 p-4 rounded-2xl mb-6">
+                    <p class="font-semibold text-sm text-gray-600 mb-2">✨ Why this match?</p>
+                    <ul class="space-y-1 text-sm text-gray-700">
+                        {% for insight in match.insights %}
+                        <li>{{ insight }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                <button onclick="showContactModal('{{ match.ngo_name }}', '{{ match.contact_email }}')" 
+                        class="w-full bg-[#FF6F00] hover:bg-orange-600 text-white py-4 rounded-2xl font-semibold transition transform hover:scale-105">
+                    <i class="fas fa-envelope mr-2"></i> Contact NGO
+                </button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="mt-16 text-center">
+        <a href="{{ url_for('index') }}" class="text-[#1B5E20] hover:underline">← Back to Home</a>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="contactModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden transition-opacity duration-300">
+    <div class="bg-white rounded-3xl p-8 max-w-md w-full mx-4 shadow-2xl transform transition-all">
+        <h3 class="text-2xl font-bold text-[#1B5E20] mb-4">Contact <span id="modalNgoName"></span></h3>
+        <p class="text-gray-600 mb-4">You can reach out to this NGO via email:</p>
+        <div class="bg-gray-100 p-3 rounded-xl flex justify-between items-center mb-6">
+            <span id="modalEmail" class="font-mono text-sm break-all"></span>
+            <button onclick="copyEmail()" class="text-[#FF6F00] hover:text-orange-600">
+                <i class="fas fa-copy"></i>
+            </button>
+        </div>
+        <button onclick="closeModal()" class="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 py-3 rounded-2xl font-semibold">
+            Close
+        </button>
+    </div>
+</div>
+
+<script>
+    let currentEmail = '';
+
+    function showContactModal(ngoName, email) {
+        currentEmail = email;
+        document.getElementById('modalNgoName').innerText = ngoName;
+        document.getElementById('modalEmail').innerText = email;
+        document.getElementById('contactModal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+        document.getElementById('contactModal').classList.add('hidden');
+    }
+
+    function copyEmail() {
+        navigator.clipboard.writeText(currentEmail);
+        alert('Email copied to clipboard!');
+    }
+
+    window.onclick = function(event) {
+        const modal = document.getElementById('contactModal');
+        if (event.target === modal) {
+            closeModal();
+        }
+    }
+</script>
+{% endblock %}

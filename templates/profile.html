@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-4xl mx-auto px-6 py-12">
+    <h1 class="text-5xl font-bold text-[#1B5E20] mb-10">My Profile</h1>
+
+    <div class="bg-white rounded-3xl shadow-xl p-10">
+        {% if user_type == 'volunteer' %}
+        <h2 class="text-3xl font-semibold mb-8">Volunteer Details</h2>
+        <div class="grid grid-cols-2 gap-y-6 text-lg">
+            <div><strong>Name:</strong> {{ user.name }}</div>
+            <div><strong>Email:</strong> {{ user.email }}</div>
+            <div><strong>Location:</strong> {{ user.location }}</div>
+            <div><strong>Skills:</strong> {{ user.skills|join(', ') }}</div>
+            <div><strong>Interests:</strong> {{ user.interests|join(', ') }}</div>
+            <div><strong>Availability:</strong> {{ user.availability|join(', ') }}</div>
+            <div class="col-span-2"><strong>Bio:</strong><br>{{ user.bio }}</div>
+        </div>
+
+        {% else %}
+        <h2 class="text-3xl font-semibold mb-8">NGO Details</h2>
+        <div class="grid grid-cols-2 gap-y-6 text-lg">
+            <div><strong>NGO Name:</strong> {{ user.ngo_name }}</div>
+            <div><strong>Mission:</strong> {{ user.mission }}</div>
+            <div><strong>Focus Area:</strong> {{ user.focus_area }}</div>
+            <div><strong>Location:</strong> {{ user.location }}</div>
+            <div><strong>Open Slots:</strong> {{ user.open_slots }}</div>
+            <div><strong>Schedule:</strong> {{ user.schedule }}</div>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="mt-8 text-center">
+        <a href="{{ url_for('logout') }}" class="text-red-600 hover:underline">Logout</a>
+    </div>
+</div>
+{% endblock %}

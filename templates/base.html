@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConnectVol</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <!-- AOS Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</head>
+<body class="bg-gray-50">
+    <nav class="bg-[#1B5E20] text-white py-5 shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <i class="fas fa-hands-helping text-4xl text-[#FF6F00]"></i>
+                <span class="text-3xl font-bold">ConnectVol</span>
+            </div>
+
+            <div class="hidden md:flex gap-8 text-sm font-medium">
+                <a href="{{ url_for('index') }}">Home</a>
+                {% if session.get('user_type') == 'volunteer' %}
+                    <a href="{{ url_for('match') }}">My Matches</a>
+                    <a href="{{ url_for('schedule') }}">Schedule</a>
+                {% elif session.get('user_type') == 'ngo' %}
+                    <a href="{{ url_for('ngo_dashboard') }}">Matched Volunteers</a>
+                    <a href="{{ url_for('browse') }}">Browse NGOs</a>
+                {% else %}
+                    <a href="{{ url_for('browse') }}">Browse NGOs</a>
+                    <a href="{{ url_for('match') }}">Smart Match</a>
+                {% endif %}
+                <a href="{{ url_for('impact') }}">Impact</a>
+                <a href="{{ url_for('testimonials') }}">Testimonials</a>
+            </div>
+
+            <!-- User Greeting -->
+            {% if 'user_data' in session %}
+            <div class="flex items-center gap-4">
+                <div class="text-right">
+                    <span class="text-sm opacity-75">Hi,</span><br>
+                    <span class="font-semibold">
+                        {% if session['user_type'] == 'volunteer' %}
+                            {{ session['user_data']['name'] }}
+                        {% else %}
+                            {{ session['user_data']['ngo_name'] }}
+                        {% endif %}
+                    </span>
+                </div>
+                <a href="{{ url_for('profile') }}" class="bg-white text-[#1B5E20] px-5 py-2 rounded-2xl text-sm font-medium hover:bg-gray-100">
+                    Profile
+                </a>
+                <a href="{{ url_for('logout') }}" class="text-sm hover:text-[#FF6F00]">Logout</a>
+            </div>
+            {% else %}
+            <div class="flex gap-4">
+                <a href="{{ url_for('volunteer_register') }}" class="bg-[#FF6F00] px-6 py-3 rounded-2xl font-semibold hover:bg-orange-600">Join as Volunteer</a>
+                <a href="{{ url_for('ngo_register') }}" class="border border-white px-6 py-3 rounded-2xl font-semibold hover:bg-white hover:text-[#1B5E20]">For NGOs</a>
+                <a href="{{ url_for('login') }}" class="text-white border border-white px-4 py-2 rounded-2xl">Login</a>
+            </div>
+            {% endif %}
+        </div>
+    </nav>
+
+    {% block content %}{% endblock %}
+
+    <footer class="bg-[#1B5E20] text-white py-12 mt-20">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-lg">ConnectVol • Gujarat Volunteer Platform</p>
+            <p class="text-sm opacity-70">Hackathon Demo • Professional Edition</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+    </script>
+</body>
+</html>

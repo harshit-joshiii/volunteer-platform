@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-7xl mx-auto px-6 py-12">
+    <h1 class="text-5xl font-bold text-[#1B5E20] mb-2">Browse NGOs</h1>
+    <p class="text-xl text-gray-600 mb-10">Find opportunities that match your passion</p>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {% for ngo in ngos %}
+        <div class="bg-white rounded-3xl shadow-xl p-8 card-hover">
+            <h3 class="text-2xl font-bold text-[#1B5E20]">{{ ngo.ngo_name }}</h3>
+            <p class="text-sm text-[#FF6F00] mt-1">{{ ngo.focus_area }} • {{ ngo.location }}</p>
+            <p class="text-gray-700 mt-6 line-clamp-3">{{ ngo.mission }}</p>
+            
+            <div class="mt-8 flex justify-between items-end">
+                <div>
+                    <span class="text-sm text-gray-500">Open Slots</span><br>
+                    <span class="text-4xl font-bold text-[#1B5E20]">{{ ngo.open_slots }}</span>
+                </div>
+                <button onclick="showContactModal('{{ ngo.ngo_name }}', '{{ ngo.contact_email }}')" 
+                        class="bg-[#FF6F00] text-white px-8 py-3 rounded-2xl font-medium hover:bg-orange-600 transition">
+                    Contact
+                </button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="contactModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden transition-opacity duration-300">
+    <div class="bg-white rounded-3xl p-8 max-w-md w-full mx-4 shadow-2xl transform transition-all">
+        <h3 class="text-2xl font-bold text-[#1B5E20] mb-4">Contact <span id="modalNgoName"></span></h3>
+        <p class="text-gray-600 mb-4">You can reach out to this NGO via email:</p>
+        <div class="bg-gray-100 p-3 rounded-xl flex justify-between items-center mb-6">
+            <span id="modalEmail" class="font-mono text-sm break-all"></span>
+            <button onclick="copyEmail()" class="text-[#FF6F00] hover:text-orange-600">
+                <i class="fas fa-copy"></i>
+            </button>
+        </div>
+        <button onclick="closeModal()" class="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 py-3 rounded-2xl font-semibold">
+            Close
+        </button>
+    </div>
+</div>
+
+<script>
+    let currentEmail = '';
+
+    function showContactModal(ngoName, email) {
+        currentEmail = email;
+        document.getElementById('modalNgoName').innerText = ngoName;
+        document.getElementById('modalEmail').innerText = email;
+        document.getElementById('contactModal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+        document.getElementById('contactModal').classList.add('hidden');
+    }
+
+    function copyEmail() {
+        navigator.clipboard.writeText(currentEmail);
+        alert('Email copied to clipboard!');
+    }
+
+    window.onclick = function(event) {
+        const modal = document.getElementById('contactModal');
+        if (event.target === modal) {
+            closeModal();
+        }
+    }
+</script>
+{% endblock %}

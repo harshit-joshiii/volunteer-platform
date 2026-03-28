@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-7xl mx-auto px-6 py-16">
+    <!-- Hero -->
+    <div class="text-center py-20 bg-gradient-to-br from-[#1B5E20] to-green-700 text-white rounded-3xl relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-[#FF6F00]/20 to-transparent animate-pulse"></div>
+        <h1 class="text-6xl font-bold mb-4 relative z-10">Connect. Impact. Grow.</h1>
+        <p class="text-2xl mb-10 relative z-10">AI-powered matching between volunteers & local NGOs in Vadodara</p>
+        <div class="flex gap-6 justify-center relative z-10">
+            <a href="/volunteer/register" class="bg-[#FF6F00] text-white px-10 py-5 rounded-3xl text-xl font-semibold hover:bg-orange-600 transition transform hover:scale-105">I'm a Volunteer</a>
+            <a href="/ngo/register" class="bg-white text-[#1B5E20] px-10 py-5 rounded-3xl text-xl font-semibold hover:bg-gray-100 transition transform hover:scale-105">I'm an NGO</a>
+        </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="grid grid-cols-3 gap-8 mt-16 text-center">
+        <div data-aos="fade-up" data-aos-delay="100" class="stats-card bg-white shadow-xl p-8 rounded-3xl">
+            <h3 class="text-5xl font-bold text-[#1B5E20]">{{ stats.volunteers }}</h3>
+            <p class="text-gray-600">Volunteers</p>
+        </div>
+        <div data-aos="fade-up" data-aos-delay="200" class="stats-card bg-white shadow-xl p-8 rounded-3xl">
+            <h3 class="text-5xl font-bold text-[#1B5E20]">{{ stats.ngos }}</h3>
+            <p class="text-gray-600">NGOs</p>
+        </div>
+        <div data-aos="fade-up" data-aos-delay="300" class="stats-card bg-white shadow-xl p-8 rounded-3xl">
+            <h3 class="text-5xl font-bold text-[#1B5E20]">{{ stats.hours }}</h3>
+            <p class="text-gray-600">Hours Contributed</p>
+        </div>
+    </div>
+
+    <!-- How It Works -->
+    <div class="mt-20">
+        <h2 class="text-4xl font-bold text-center mb-12">How It Works</h2>
+        <div class="grid grid-cols-3 gap-10">
+            <div data-aos="fade-up" data-aos-delay="100" class="text-center">
+                <i class="fas fa-user-plus text-6xl text-[#FF6F00]"></i>
+                <h3 class="font-semibold mt-4">1. Register</h3>
+                <p>Tell us your skills & availability</p>
+            </div>
+            <div data-aos="fade-up" data-aos-delay="200" class="text-center">
+                <i class="fas fa-brain text-6xl text-[#FF6F00]"></i>
+                <h3 class="font-semibold mt-4">2. AI Match</h3>
+                <p>Gemini finds your perfect NGO</p>
+            </div>
+            <div data-aos="fade-up" data-aos-delay="300" class="text-center">
+                <i class="fas fa-calendar-check text-6xl text-[#FF6F00]"></i>
+                <h3 class="font-semibold mt-4">3. Volunteer</h3>
+                <p>Start making real impact</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto px-6 py-12">
+    <h1 class="text-5xl font-bold text-center text-[#1B5E20] mb-12">Your Impact Dashboard</h1>
+
+    <div class="grid md:grid-cols-3 gap-8 mb-12">
+        <div class="bg-white p-8 rounded-3xl shadow-xl text-center card-hover">
+            <div class="text-6xl font-bold text-[#1B5E20]">{{ impact_data.hours }}</div>
+            <div class="text-gray-600 mt-2">Hours Volunteered</div>
+        </div>
+        <div class="bg-white p-8 rounded-3xl shadow-xl text-center card-hover">
+            <div class="text-6xl font-bold text-[#1B5E20]">{{ impact_data.ngos_supported }}</div>
+            <div class="text-gray-600 mt-2">NGOs Supported</div>
+        </div>
+        <div class="bg-white p-8 rounded-3xl shadow-xl text-center card-hover">
+            <div class="text-6xl font-bold text-[#FF6F00]">87%</div>
+            <div class="text-gray-600 mt-2">Community Impact</div>
+        </div>
+    </div>
+
+    <!-- Chart -->
+    <div class="bg-white p-10 rounded-3xl shadow-xl">
+        <h2 class="text-2xl font-semibold mb-8 text-center">Skills Contribution</h2>
+        <canvas id="skillsChart" height="100"></canvas>
+    </div>
+
+    <div class="mt-12 bg-white p-8 rounded-3xl shadow">
+        <h3 class="font-semibold text-xl mb-6">Recent Activity</h3>
+        <ul class="space-y-6">
+            <li class="flex gap-4">
+                <div class="text-green-600">✓</div>
+                <div>
+                    <strong>Tree Planting Drive</strong> with Green Earth Vadodara — 5 hours
+                    <div class="text-sm text-gray-500">March 25, 2026</div>
+                </div>
+            </li>
+            <li class="flex gap-4">
+                <div class="text-green-600">✓</div>
+                <div>
+                    <strong>Coding Workshop</strong> with Tech for Good India — 3 hours
+                    <div class="text-sm text-gray-500">March 20, 2026</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    const ctx = document.getElementById('skillsChart');
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Teaching', 'Environmental', 'Tech', 'Community'],
+            datasets: [{
+                data: [40, 30, 20, 10],
+                backgroundColor: ['#1B5E20', '#FF6F00', '#4ade80', '#86efac']
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { legend: { position: 'bottom' } }
+        }
+    });
+</script>
+{% endblock %}

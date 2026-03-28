@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #f9fafb;
+    background-image: radial-gradient(circle at 10% 20%, rgba(27, 94, 32, 0.03) 1px, transparent 1px);
+    background-size: 24px 24px;
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* Smooth page load fade-in */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Hero Background (if you add the class) */
+.hero-bg {
+    background-size: cover;
+    animation: subtleZoom 20s infinite alternate;
+}
+@keyframes subtleZoom {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.05); }
+}
+
+/* Button hover effect */
+button, .btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+button:hover, .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Card Hover Effects */
+.card-hover {
+    transition: all 0.3s ease;
+}
+.card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 
+                0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+/* Match Score Circle */
+.match-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 9999px;
+    background: conic-gradient(#FF6F00 0% var(--score), #e5e7eb var(--score) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.match-circle::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: white;
+    border-radius: 9999px;
+}
+.match-score-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1B5E20;
+    z-index: 10;
+}
+
+/* Form Styling */
+select[multiple] {
+    height: 120px;
+}
+
+/* AI magic icon animation */
+.fa-magic {
+    animation: subtlePulse 2s infinite;
+}
+@keyframes subtlePulse {
+    0% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
+    100% { opacity: 0.6; transform: scale(1); }
+}
+
+/* Smooth scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Stats Card Texture */
+.stats-card {
+    background-image: repeating-linear-gradient(45deg, rgba(27, 94, 32, 0.05) 0px, rgba(27, 94, 32, 0.05) 2px, transparent 2px, transparent 8px);
+}

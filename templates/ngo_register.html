@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto px-6 py-12">
+    <div class="text-center mb-10">
+        <h1 class="text-5xl font-bold text-[#1B5E20]">Register Your NGO</h1>
+    </div>
+
+    <form method="POST" class="bg-white rounded-3xl shadow-xl p-10 space-y-8">
+        <div>
+            <label class="block text-sm font-medium mb-2">NGO Name</label>
+            <input type="text" name="ngo_name" required class="w-full px-5 py-4 border rounded-2xl focus:border-[#1B5E20]">
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium mb-2">Mission Statement</label>
+            <textarea name="mission" rows="4" required class="w-full px-5 py-4 border rounded-3xl focus:border-[#1B5E20]"></textarea>
+        </div>
+
+        <div class="grid grid-cols-2 gap-6">
+            <div>
+                <label class="block text-sm font-medium mb-2">Focus Area</label>
+                <input type="text" name="focus_area" required class="w-full px-5 py-4 border rounded-2xl">
+            </div>
+            <div>
+                <label class="block text-sm font-medium mb-2">Location</label>
+                <input type="text" name="location" value="Vadodara" required class="w-full px-5 py-4 border rounded-2xl">
+            </div>
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium mb-2">Required Skills (multi-select)</label>
+            <select name="required_skills" multiple class="w-full px-5 py-4 border rounded-2xl h-32">
+                {% for skill in skills_options %}
+                <option value="{{ skill }}">{{ skill }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="grid grid-cols-2 gap-6">
+            <div>
+                <label class="block text-sm font-medium mb-2">Open Slots</label>
+                <input type="number" name="open_slots" value="10" required class="w-full px-5 py-4 border rounded-2xl">
+            </div>
+            <div>
+                <label class="block text-sm font-medium mb-2">Schedule</label>
+                <input type="text" name="schedule" value="Weekends Morning" required class="w-full px-5 py-4 border rounded-2xl">
+            </div>
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium mb-2">Contact Email</label>
+            <input type="email" name="contact_email" required class="w-full px-5 py-4 border rounded-2xl">
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium mb-2">Password</label>
+            <input type="password" name="password" required class="w-full px-5 py-4 border rounded-2xl">
+        </div>
+
+        <div class="text-center pt-6">
+            <button type="submit" class="bg-[#1B5E20] text-white px-12 py-5 rounded-3xl text-xl font-semibold hover:bg-green-800">
+                Register NGO
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

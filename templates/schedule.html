@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-4xl mx-auto py-16 px-6">
+    <h1 class="text-4xl font-bold mb-12 text-center">📅 Your Schedule</h1>
+    <div class="bg-white shadow-2xl rounded-3xl p-8">
+        <table class="w-full">
+            <thead>
+                <tr class="border-b">
+                    <th class="text-left py-4">Date</th>
+                    <th class="text-left py-4">NGO</th>
+                    <th class="text-left py-4">Activity</th>
+                    <th class="text-left py-4">Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for c in commitments %}
+                <tr class="border-b">
+                    <td class="py-6">{{ c.date }}</td>
+                    <td class="py-6">{{ c.ngo }}</td>
+                    <td class="py-6">{{ c.activity }}</td>
+                    <td class="py-6">{{ c.time }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
