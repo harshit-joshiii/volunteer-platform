@@ -82,7 +82,7 @@ def index():
     "volunteers": len(load_volunteers()),
     "ngos": len(load_ngos()),
     "hours": len(load_volunteers()) * 12   # average 12 hours per volunteer
-}
+    }
     return render_template('index.html', stats=stats, testimonials=load_testimonials()[:4])
 
 @app.route('/volunteer/register', methods=['GET', 'POST'])
